@@ -23,6 +23,7 @@ namespace test_task_src
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = this;
         }
     }
 }
