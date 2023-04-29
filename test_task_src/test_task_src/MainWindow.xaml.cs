@@ -12,18 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using test_task_src.Repositories;
+using test_task_src.Views;
 
-namespace test_task_src
+namespace test_task_src;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            MainFrame.Content = this;
-        }
+        InitializeComponent();
+        MainFrame.Content = new AssetsPage(MainFrame,new CoinCapRepository());
     }
 }

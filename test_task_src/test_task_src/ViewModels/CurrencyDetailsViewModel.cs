@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using test_task_src.Mappers;
 using test_task_src.Models.DTOs;
+using test_task_src.Models.PageModels;
 using test_task_src.Repositories.Abstract;
 using test_task_src.Utilities;
 using test_task_src.ViewModels.Abstract;
@@ -10,8 +12,8 @@ namespace test_task_src.ViewModels;
 
 public class CurrencyDetailsViewModel : ViewModel
 {
-    private CoinCapCurrency _currency;
-    public CoinCapCurrency Currency 
+    private DetailsPageModel _currency;
+    public DetailsPageModel Currency 
     {
         get => _currency;
         private set
@@ -25,7 +27,19 @@ public class CurrencyDetailsViewModel : ViewModel
         string currencyId) 
         : base(mainframe, cryptoRepository)
     {
-        _currency = _cryptoRepository.GetCurrencyByIdAsync(currencyId).Result;
+        InitializeCurrency(currencyId);
+    }
+
+    private async void InitializeCurrency(string currencyId)
+    {
+        var dto = await _cryptoRepository.GetCurrencyById(currencyId);
+        var exchanges = await _cryptoRepository.GetExchanges(currencyId);
+        Currency = dto
+            .ToDetailsPageModel(exchanges);
+        if(Currency is null)
+        {
+            Currency = new DetailsPageModel();
+        }
     }
 
     public ICommand GoToAssetsCommand => new RelayCommand(parameter =>

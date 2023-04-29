@@ -3,12 +3,63 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:test_task_src.Views"
+      xmlns:viewmodels="clr-namespace:test_task_src.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyDetailsViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CurrencyDetailsPage">
-
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
+        <Button Grid.Column="0" Height="25" Width="100" VerticalAlignment="Top" FontSize="16" 
+                Command="{Binding GoToAssetsCommand}">Go back</Button>
+
+        <StackPanel Grid.Column="1">
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Name</TextBlock>
+                <TextBox FontSize="16" Height="30" TextAlignment="Center" Text="{Binding Currency.Name,
+                    UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Id</TextBlock>
+                <TextBox FontSize="16" Height="30" TextAlignment="Center" Text="{Binding Currency.Id,
+                    UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Symbol</TextBlock>
+                <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.Symbol,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Supply</TextBlock>
+                <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.Supply,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Price</TextBlock>
+                <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.PriceUsd,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Market Cap</TextBlock>
+                <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.MarketCapUsd,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Volume in last 24 hours</TextBlock>
+                <TextBox FontSize="16"  Height="25" TextAlignment="Center" Text="{Binding Currency.VolumeUsd24Hr,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>            
+        </StackPanel>
+
+        <DockPanel Grid.Column="2" >
+            <TextBlock Grid.Column="2" FontSize="16" Height="25" TextAlignment="Center"
+                       DockPanel.Dock="Top">Markets</TextBlock>
+            <ListBox ItemsSource="{Binding Currency.ExchangeInfos}" FontSize="16"/>
+        </DockPanel>
     </Grid>
 </Page>
