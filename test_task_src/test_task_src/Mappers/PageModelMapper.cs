@@ -27,9 +27,9 @@ public static class PageModelMapper
             Symbol = coinCapCurrency.symbol,
             Id = coinCapCurrency.id,
             Supply = coinCapCurrency.supply,
-            MarketCapUsd = coinCapCurrency.marketCapUsd + "$",
-            VolumeUsd24Hr = coinCapCurrency.volumeUsd24Hr + "$",
             PriceUsd = coinCapCurrency.priceUsd + "$",
+            MarketCapUsd = coinCapCurrency.marketCapUsd + "$",
+            VolumeUsd24Hr = coinCapCurrency.volumeUsd24Hr,
             ChangePercent24Hr = coinCapCurrency.changePercent24Hr,
             ExchangeInfos = exchanges
         };

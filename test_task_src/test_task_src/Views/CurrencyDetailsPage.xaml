@@ -40,20 +40,25 @@
                     UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Price</TextBlock>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Price (USD)</TextBlock>
                 <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.PriceUsd,
                     UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Market Cap</TextBlock>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Market Cap (USD)</TextBlock>
                 <TextBox FontSize="16" Height="25" TextAlignment="Center" Text="{Binding Currency.MarketCapUsd,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16" Height="25" TextAlignment="Center">Price change in last 24 hours (%)</TextBlock>
+                <TextBox FontSize="16"  Height="25" TextAlignment="Center" Text="{Binding Currency.ChangePercent24Hr,
                     UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock FontSize="16" Height="25" TextAlignment="Center">Volume in last 24 hours</TextBlock>
                 <TextBox FontSize="16"  Height="25" TextAlignment="Center" Text="{Binding Currency.VolumeUsd24Hr,
                     UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-            </StackPanel>            
+            </StackPanel>       
         </StackPanel>
 
         <DockPanel Grid.Column="2" >
