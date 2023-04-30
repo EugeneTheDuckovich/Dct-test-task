@@ -9,5 +9,5 @@ The task is a window application developed using .NET and WPF, that shows data a
 User can find a currency that they are interested in using search by name of currency or its symbol.
 
 -Details page contains detailed data about particular currency, including name, id, symbol, price, market cap, price change over the last 24 hours in percents
-and trading volume over the last 24 hours in USD. This si done via /assets/{id} endpoint.
+and trading volume over the last 24 hours in USD. This is done via /assets/{id} endpoint.
 This page also includes a lsit of exchanges where this currency may be bought and for what price, which is done with the help of /assets/{id}/markets endpoint.
