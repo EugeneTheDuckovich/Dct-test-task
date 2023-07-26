@@ -1,0 +1,109 @@
+﻿<Page x:Class="DctTestTask.Views.CurrencyDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewmodels="clr-namespace:DctTestTask.ViewModels" 
+      xmlns:converters="clr-namespace:DctTestTask.Converters" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyDetailsViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CurrencyDetailsPage">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/ResourceDictionaries/CryptoAggregatorResources.xaml"/>     
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Button Grid.Column="0" Height="25" Width="100" VerticalAlignment="Top" FontSize="16" 
+                Command="{Binding GoToAssetsCommand}">
+            Go back
+        </Button>
+
+        <DockPanel Grid.Column="1" x:Name="Dockpanel">
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel Width="{Binding
+                            Converter={converters:PercentageConverter}, 
+                            ElementName=Dockpanel, 
+                            Path=ActualWidth, 
+                            ConverterParameter=0.5}">
+                    <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
+                        Name
+                    </TextBlock>
+                    <TextBox TextAlignment="Center" 
+                             Text="{Binding Currency.Name,
+                             UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
+                        Id
+                    </TextBlock>
+                    <TextBox TextAlignment="Center"
+                             Text="{Binding Currency.Id,
+                             UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel Width="{Binding
+                            Converter={converters:PercentageConverter}, 
+                            ElementName=Dockpanel, 
+                            Path=ActualWidth, 
+                            ConverterParameter=0.5}">
+                    <TextBlock TextAlignment="Center">
+                        Symbol
+                    </TextBlock>
+                    <TextBox TextAlignment="Center" 
+                             Text="{Binding Currency.Symbol,
+                             UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock TextAlignment="Center">
+                        Price (USD)
+                    </TextBlock>
+                    <TextBox TextAlignment="Center" 
+                             Text="{Binding Currency.PriceUsd,
+                             UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                </StackPanel>
+            </DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock TextAlignment="Center">
+                    Supply
+                </TextBlock>
+                <TextBox TextAlignment="Center" Text="{Binding Currency.Supply,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock TextAlignment="Center">
+                    Market Cap (USD)
+                </TextBlock>
+                <TextBox TextAlignment="Center" Text="{Binding Currency.MarketCapUsd,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock TextAlignment="Center">
+                    Price change in last 24 hours (%)
+                </TextBlock>
+                <TextBox TextAlignment="Center" Text="{Binding Currency.ChangePercent24Hr,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock TextAlignment="Center">
+                    Volume in last 24 hours
+                </TextBlock>
+                <TextBox TextAlignment="Center" Text="{Binding Currency.VolumeUsd24Hr,
+                    UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </StackPanel>       
+        </DockPanel>
+
+        <DockPanel Grid.Column="2" >
+            <TextBlock TextAlignment="Center" DockPanel.Dock="Top">
+                Markets
+            </TextBlock>
+            <ListBox ItemsSource="{Binding Currency.ExchangeInfos}" FontSize="16"/>
+        </DockPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,40 @@
+<Page x:Class="DctTestTask.Views.MainMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DctTestTask.Views"
+      xmlns:viewmodels="clr-namespace:DctTestTask.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:MainMenuViewModel}"
+      mc:Ignorable="d"
+      Title="MainMenuPage" Height="450" Width="800">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/ResourceDictionaries/CryptoAggregatorResources.xaml" />    
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Style="{StaticResource HeaderText}">
+                Crypto Aggregator
+            </TextBlock>
+            <Separator Width="5" Visibility="Hidden" />
+            <Button Command="{Binding GoToAssetsPageCommand}">
+                View Assets
+            </Button>
+            <Separator Width="5" Visibility="Hidden" />
+            <Button Command="{Binding GoToConvertPageCommand}">
+                Convert Currencies
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
