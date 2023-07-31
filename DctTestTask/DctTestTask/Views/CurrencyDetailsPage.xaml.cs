@@ -12,10 +12,8 @@ namespace DctTestTask.Views;
 /// </summary>
 public partial class CurrencyDetailsPage : Page
 {
-    public CurrencyDetailsPage(Frame mainframe, 
-        ICryptoService<CoinCapCurrency> cryptoService, string currencyId)
+    public CurrencyDetailsPage()
     {
         InitializeComponent();
-        DataContext = new CurrencyDetailsViewModel(mainframe,cryptoService,currencyId);
     }
 }

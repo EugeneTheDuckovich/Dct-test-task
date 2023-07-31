@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using AutoMapper;
 using DctTestTask.Models.DTOs;
 using DctTestTask.Models.PageModels;
 using DctTestTask.Repositories.Abstract;
@@ -11,10 +12,11 @@ using DctTestTask.Utilities;
 using DctTestTask.ViewModels.Abstract;
 using DctTestTask.Views;
 using DctTestTask.Mappers;
+using DctTestTask.Models.Events;
 
 namespace DctTestTask.ViewModels;
 
-public class AssetsViewModel : ViewModel
+public class AssetsPageViewModel : PageViewModel
 {
     private object _lockObject = new object();
 
@@ -66,21 +68,16 @@ public class AssetsViewModel : ViewModel
     public ICommand GoToDetailsCommand => new RelayCommand(parameter =>
     {
         var currencyId = parameter as string;
-        if (currencyId is null)
-        {
-            return;
-        }
-
-        _mainFrame.Content = new CurrencyDetailsPage(_mainFrame, _cryptoService, currencyId);
+        ChangePage(ViewType.Details,currencyId);
     }, parameter => parameter is string);
 
     public ICommand GoToMenuCommand => new RelayCommand(parameter =>
     {
-        _mainFrame.Content = new MainMenuPage(_mainFrame, _cryptoService);
+        ChangePage(ViewType.Menu);
     });
 
-    public AssetsViewModel(Frame mainframe,ICryptoService<CoinCapCurrency> cryptoService)
-        :base(mainframe,cryptoService)
+    public AssetsPageViewModel(ICryptoService<CoinCapCurrency> cryptoService, IMapper mapper)
+        :base(cryptoService,mapper)
     {
         _lockObject = new object();
         AssetsView = new ObservableCollection<AssetPageModel>();

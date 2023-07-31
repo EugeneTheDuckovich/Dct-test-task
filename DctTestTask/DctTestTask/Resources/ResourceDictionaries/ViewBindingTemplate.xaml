@@ -1,0 +1,19 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:view="clr-namespace:DctTestTask.Views"
+                    xmlns:viewModel="clr-namespace:DctTestTask.ViewModels">
+    
+    <DataTemplate DataType="{x:Type viewModel:MenuPageViewModel}">
+        <view:MainMenuPage />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModel:AssetsPageViewModel}">
+        <view:AssetsPage />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModel:ConvertPageViewModel}">
+        <view:ConvertCurrencyPage />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModel:DetailsPageViewModel}">
+        <view:CurrencyDetailsPage />
+    </DataTemplate>
+    
+</ResourceDictionary>

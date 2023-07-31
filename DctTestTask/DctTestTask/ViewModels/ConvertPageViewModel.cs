@@ -1,8 +1,10 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using AutoMapper;
 using DctTestTask.Mappers;
 using DctTestTask.Models.DTOs;
+using DctTestTask.Models.Events;
 using DctTestTask.Models.PageModels;
 using DctTestTask.Repositories.Abstract;
 using DctTestTask.Utilities;
@@ -11,15 +13,15 @@ using DctTestTask.Views;
 
 namespace DctTestTask.ViewModels;
 
-public class ConvertCurrencyViewModel : ViewModel
+public class ConvertPageViewModel : PageViewModel
 {
-    private ConvertionPageModel[] _assets;
-    private ConvertionPageModel? _convertFrom;
-    private ConvertionPageModel? _convertTo;
+    private ConvertPageModel[] _assets;
+    private ConvertPageModel? _convertFrom;
+    private ConvertPageModel? _convertTo;
     private decimal _convertFromAmount;
     private decimal _convertToAmount;
 
-    public ConvertionPageModel[] Assets
+    public ConvertPageModel[] Assets
     {
         get => _assets;
         set
@@ -29,7 +31,7 @@ public class ConvertCurrencyViewModel : ViewModel
         }
     }
     
-    public ConvertionPageModel? ConvertFrom
+    public ConvertPageModel? ConvertFrom
     {
         get => _convertFrom;
         set
@@ -40,7 +42,7 @@ public class ConvertCurrencyViewModel : ViewModel
         }
     }
     
-    public ConvertionPageModel? ConvertTo
+    public ConvertPageModel? ConvertTo
     {
         get => _convertTo;
         set
@@ -74,11 +76,11 @@ public class ConvertCurrencyViewModel : ViewModel
 
     public ICommand GoToMenuCommand => new RelayCommand(parameter =>
     {
-        _mainFrame.Content = new MainMenuPage(_mainFrame, _cryptoService);
+        ChangePage(ViewType.Menu);
     });
     
-    public ConvertCurrencyViewModel(Frame mainFrame, ICryptoService<CoinCapCurrency> cryptoService) 
-        : base(mainFrame, cryptoService)
+    public ConvertPageViewModel(ICryptoService<CoinCapCurrency> cryptoService, IMapper mapper)
+        :base(cryptoService,mapper)
     {
         InitializeAssets();
     }
@@ -98,7 +100,9 @@ public class ConvertCurrencyViewModel : ViewModel
         if (ConvertTo is null)
             return;
 
-        if(!ConvertTo.PriceUsd.Equals(0))
-            ConvertToAmount = ConvertFromAmount * (ConvertFrom.PriceUsd / ConvertTo.PriceUsd);
+        if (ConvertTo.PriceUsd.Equals(0))
+            return;
+        
+        ConvertToAmount = ConvertFromAmount * (ConvertFrom.PriceUsd / ConvertTo.PriceUsd);
     }
 }

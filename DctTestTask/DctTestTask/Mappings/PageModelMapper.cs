@@ -35,9 +35,9 @@ public static class PageModelMapper
         };
     }
 
-    public static ConvertionPageModel ToConvertPageModel(this CoinCapCurrency coinCapCurrency)
+    public static ConvertPageModel ToConvertPageModel(this CoinCapCurrency coinCapCurrency)
     {
-        return new ConvertionPageModel
+        return new ConvertPageModel
         {
             Name = coinCapCurrency.Name,
             PriceUsd = decimal.Parse(coinCapCurrency.PriceUsd, CultureInfo.InvariantCulture),

@@ -7,9 +7,8 @@ namespace DctTestTask.Views;
 
 public partial class MainMenuPage : Page
 {
-    public MainMenuPage(Frame mainFrame, ICryptoService<CoinCapCurrency> cryptoService)
+    public MainMenuPage()
     {
         InitializeComponent();
-        DataContext = new MainMenuViewModel(mainFrame, cryptoService);
     }
 }

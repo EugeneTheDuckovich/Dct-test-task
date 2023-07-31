@@ -1,7 +1,11 @@
 ﻿
+using AutoMapper;
+using DctTestTask.Mappers;
+using DctTestTask.Models.DTOs;
+
 namespace DctTestTask.Models.PageModels;
 
-public class AssetPageModel
+public class AssetPageModel : IMapFrom<CoinCapCurrency>
 {
     public string Id { get; set; }
 

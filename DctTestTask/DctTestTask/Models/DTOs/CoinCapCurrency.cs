@@ -18,10 +18,7 @@ public class CoinCapCurrency
     
     [JsonPropertyName("supply")]
     public string Supply { get; set; }
-    
-    [JsonPropertyName("maxSupply")]
-    public string MaxSupply { get; set; }
-    
+
     [JsonPropertyName("marketCapUsd")]
     public string MarketCapUsd { get; set; }
     
@@ -33,7 +30,4 @@ public class CoinCapCurrency
     
     [JsonPropertyName("changePercent24Hr")]
     public string ChangePercent24Hr { get; set; }
-    
-    [JsonPropertyName("vwap24Hr")]
-    public string Vwap24Hr { get; set; }
 }

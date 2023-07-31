@@ -7,9 +7,8 @@ namespace DctTestTask.Views;
 
 public partial class ConvertCurrencyPage : Page
 {
-    public ConvertCurrencyPage(Frame mainFrame,ICryptoService<CoinCapCurrency> cryptoService)
+    public ConvertCurrencyPage()
     {
         InitializeComponent();
-        DataContext = new ConvertCurrencyViewModel(mainFrame,cryptoService);
     }
 }

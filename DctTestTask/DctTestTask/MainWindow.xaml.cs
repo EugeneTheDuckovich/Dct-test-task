@@ -1,6 +1,7 @@
 ﻿using System.Windows;
-using DctTestTask.Repositories;
-using DctTestTask.Views;
+using DctTestTask.Models.DTOs;
+using DctTestTask.Repositories.Abstract;
+using DctTestTask.ViewModels;
 
 namespace DctTestTask;
 
@@ -9,9 +10,9 @@ namespace DctTestTask;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
-        MainFrame.Content = new MainMenuPage(MainFrame,new CoinCapService());
+        DataContext = viewModel;
     }
 }

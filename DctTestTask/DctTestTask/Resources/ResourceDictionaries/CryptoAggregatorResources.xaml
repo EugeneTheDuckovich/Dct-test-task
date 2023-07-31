@@ -28,14 +28,15 @@
     <Style TargetType="TextBox">
         <Setter Property="FontSize" Value="20"/>
     </Style>
-    <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+    <Style x:Key="MyWaterMarkStyle" TargetType="TextBox">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
+                <ControlTemplate TargetType="TextBox">
                     <Grid>
                         <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
                         <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
-                        <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                        <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" 
+                               Content="{TemplateBinding Tag}" VerticalAlignment="Center"
                                Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -64,5 +65,6 @@
     
     <Style TargetType="ComboBox">
         <Setter Property="FontSize" Value="20"/>
+        <Setter Property="MinWidth" Value="100"></Setter>
     </Style>
 </ResourceDictionary>

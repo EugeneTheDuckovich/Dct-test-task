@@ -5,9 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:DctTestTask.Views"
       xmlns:viewmodels="clr-namespace:DctTestTask.ViewModels" 
-      d:DataContext="{d:DesignInstance Type=viewmodels:ConvertCurrencyViewModel}"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ConvertPageViewModel}"
       mc:Ignorable="d"
-      Title="ConvertCurrencyPage">
+      Title="ConvertCurrencyPage"
+      MinWidth="800" MinHeight="450">
     <Page.Resources>
         <ResourceDictionary Source="../Resources/ResourceDictionaries/CryptoAggregatorResources.xaml" />     
     </Page.Resources>
@@ -32,7 +33,9 @@
         
         <StackPanel Grid.Column="1" Grid.Row="1">
             <DockPanel Margin="0,0,0,5">
-                <TextBlock DockPanel.Dock="Left">Your currency: </TextBlock>
+                <TextBlock DockPanel.Dock="Left">
+                    Currency you want to sell:
+                </TextBlock>
                 <Separator DockPanel.Dock="Left" Width="5" Visibility="Hidden" />
                 <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Assets}" 
                           SelectedItem="{Binding ConvertFrom, Mode=TwoWay, 
@@ -47,7 +50,7 @@
             <DockPanel Margin="0,0,0,5">
                 <TextBlock DockPanel.Dock="Left"
                            Margin="0,0,0,5">
-                    Currency you want to convert to:
+                    Currency you want to buy:
                 </TextBlock>
                 <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Assets}"
                           SelectedItem="{Binding ConvertTo, Mode=TwoWay, 

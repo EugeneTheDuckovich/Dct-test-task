@@ -1,25 +1,17 @@
-﻿using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using AutoMapper;
 using DctTestTask.Models.DTOs;
 using DctTestTask.Models.PageModels;
 using DctTestTask.Repositories.Abstract;
 using DctTestTask.Utilities;
 using DctTestTask.ViewModels.Abstract;
-using DctTestTask.Views;
 using DctTestTask.Mappers;
 
 namespace DctTestTask.ViewModels;
 
-public class CurrencyDetailsViewModel : ViewModel
+public class DetailsPageViewModel : PageViewModel
 {
     private DetailsPageModel _currency;
-
-    public CurrencyDetailsViewModel(Frame mainframe, ICryptoService<CoinCapCurrency> cryptoService,
-        string currencyId) 
-        : base(mainframe, cryptoService)
-    {
-        InitializeCurrency(currencyId);
-    }
 
     public DetailsPageModel Currency
     {
@@ -33,8 +25,14 @@ public class CurrencyDetailsViewModel : ViewModel
 
     public ICommand GoToAssetsCommand => new RelayCommand(parameter =>
     {
-        _mainFrame.Content = new AssetsPage(_mainFrame, _cryptoService);
+        ChangePage(ViewType.Assets);
     });
+
+    public DetailsPageViewModel(ICryptoService<CoinCapCurrency> cryptoService, IMapper mapper, string currencyId)
+        :base(cryptoService,mapper)
+    {
+        InitializeCurrency(currencyId);
+    }
 
     private async void InitializeCurrency(string currencyId)
     {
